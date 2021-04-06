@@ -21,7 +21,7 @@ class UsuarioController extends Controller
     public function index(Request $request)
     {
         $registros = $this->repository->all();
-        return view('auth.usuario.index', [
+        return view('usuario.index', [
             'registros' => $registros,
         ]);
     }
@@ -29,13 +29,13 @@ class UsuarioController extends Controller
     //retorna a pagina para cadastrar um novo usuario
     public function new()
     {
-        return view('auth.usuario.incluir');
+        return view('usuario.incluir');
     }
 
     //salvar o registro de um novo usuario
     public function create(Request $request)
     {
-        return view('auth.usuario.index'); //aqui
+        return view('usuario.index'); //aqui
     }
 
     //retorna o registro de um usuario para a alteração dos dados
@@ -47,7 +47,7 @@ class UsuarioController extends Controller
             return redirect()->back();
         }
 
-        return view('auth.usuario.alterar', [
+        return view('usuario.alterar', [
             'registro' => $registro,
         ]);
     }
@@ -61,7 +61,7 @@ class UsuarioController extends Controller
             return redirect()->back();
         }
 
-        return view('auth.usuario.excluir', [
+        return view('usuario.excluir', [
             'registro' => $registro,
         ]);
     }
@@ -75,7 +75,7 @@ class UsuarioController extends Controller
             return redirect()->back();
         }
 
-        return view('auth.usuario.consultar', [
+        return view('usuario.consultar', [
             'registro' => $registro,
         ]);
     }
@@ -83,18 +83,18 @@ class UsuarioController extends Controller
     //alterar no banco o registro do usuario que modificado pelo usuario - tela
     public function save(Request $request, $id)
     {
-        return view('auth.usuario.listar');
+        return view('usuario.listar');
     }
 
     //excluir no banco o registro do autor
     public function excluir(Request $request, $id)
     {
-        return view('auth.usuario.listar');
+        return view('usuario.listar');
     }
 
     //cancela a operação do usuario
     public function cancel()
     {
-        return redirect()->route('auth.usuario.listar');
+        return redirect()->route('usuario.listar');
     }
 }
