@@ -16,9 +16,10 @@ class CreateTopicosTable extends Migration
         Schema::create('topicos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titulo', 100);
-            $table->string('conteudo', 100);
-            $table->integer('avaliação');
-            $table->date('data', 100);
+            $table->string('conteudo', 1000);
+            $table->float('avaliação');
+            $table->string('data', 100);
+            $table->timestamps();
         });
     }
 

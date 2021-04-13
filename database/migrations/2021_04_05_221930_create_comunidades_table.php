@@ -19,6 +19,7 @@ class CreateComunidadesTable extends Migration
             $table->string('sigla', 100);
             $table->integer('codigo');
             $table->string('data', 100);
+            $table->timestamps();
         });
     }
 

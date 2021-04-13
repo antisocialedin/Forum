@@ -4,12 +4,13 @@
         @include('usuario.__apptitle')
         <div class="tile">
             <div class="tile-body">
-                <form>
+                <form action="{{url('usuario/listar')}}" method="GET">
                     @csrf
                     @include('usuario.__form')
                     <div class="center">
-                        <a href="{{ url('/usuario/cancelar') }}" class="btn btn-secondary btn-lg ml-3">Cancelar Consulta
-                        </a>
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            Listagem
+                        </button>
                     </div>
                 </form>
             </div>

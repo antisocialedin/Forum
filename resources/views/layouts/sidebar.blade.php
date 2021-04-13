@@ -9,10 +9,10 @@
                         class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a class="treeview-item" href="{{ url('/usuario/listar') }}"><i
-                                class="icon fa fa-circle-o"></i>Usuario</a></li>
-                    <li><a class="treeview-item" href="{{ url('/editora/listar') }}"><i
+                                class="icon fa fa-circle-o"></i>Usuário</a></li>
+                    <li><a class="treeview-item" href="{{ url('/comunidade/listar') }}"><i
                                 class="icon fa fa-circle-o"></i>Comunidades</a></li>
-                    <li><a class="treeview-item" href="{{ url('/livro/listar') }}"><i
+                    <li><a class="treeview-item" href="{{ url('/topico/listar') }}"><i
                                 class="icon fa fa-circle-o"></i>Tópicos</a></li>
                 </ul>
             </li>

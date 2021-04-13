@@ -1,17 +1,17 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        @include('auth.usuario.__apptitle')
+        @include('usuario.__apptitle')
         <div class="tile">
             <div class="tile-body">
-                <form action="{{ url('auth/usuario/salvar') }}" method="POST">
+                <form action="{{ url('usuario/salvar') }}" method="POST">
                     @csrf
-                    @include('auth.usuario.__form')
+                    @include('usuario.__form')
                     <div class="center">
                         <button type="submit" class="btn btn-primary btn-lg">
                             Salvar Usuário
                         </button>
-                        <a href="{{ url('auth/usuario/cancelar') }}" class="btn btn-secondary btn-lg ml-3">Cancelar Cadastro</a>
+                        <a href="{{ url('usuario/cancelar') }}" class="btn btn-secondary btn-lg ml-3">Cancelar Cadastro</a>
                     </div>
                 </form>
             </div>

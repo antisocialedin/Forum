@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\models\Adm;
 
 class AdmSeeds extends Seeder
 {
@@ -9,8 +10,10 @@ class AdmSeeds extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Adm $registro)
     {
-        //
+        $registro->create([
+            'nick' => 'costela',
+        ]);
     }
 }

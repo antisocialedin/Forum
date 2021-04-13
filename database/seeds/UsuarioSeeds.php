@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Usuario;
+use App\models\Usuario;
 
 class UsuarioSeeds extends Seeder
 {
@@ -16,6 +16,14 @@ class UsuarioSeeds extends Seeder
             'nick' => 'vini-vini-vish',
             'email' => 'velocidade@hotmail.com',
             'selo'  => 'Expert em PIC',
+            'senha' => '1234',
+        ]);
+
+        $registro->create([
+            'nick' => 'beto_pera',
+            'email' => 'betoincrivel@hotmail.com',
+            'selo'  => 'Super-Arduino',
+            'senha' => '1234',
         ]);
     }
 }

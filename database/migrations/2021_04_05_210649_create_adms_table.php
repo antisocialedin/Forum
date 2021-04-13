@@ -16,6 +16,7 @@ class CreateAdmsTable extends Migration
         Schema::create('adms', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nick', 100);
+            $table->timestamps();
         });
     }
 
