@@ -9,10 +9,9 @@
                     @include('comunidade.__form')
                     <div class="center">
                         <button type="submit" class="btn btn-primary btn-lg">
-                            Salvar Dados
+                            Salvar Alterações
                         </button>
-                        <a href="{{ url('/comunidade/cancelar') }}" class="btn btn-secondary btn-lg ml-3">Cancelar
-                            Alteração</a>
+                        <a href="{{ url('/comunidade/cancelar') }}" class="btn btn-secondary btn-lg ml-3">Cancelar</a>
                     </div>
                 </form>
             </div>

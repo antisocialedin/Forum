@@ -1,15 +1,21 @@
+@include('layouts.validacao')
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-6 col-lg-12">
         <div class="form-group">
             <label for="nick" class="control-label">Nick:</label>
             <input  type="text" 
                     name="nick" 
-                    id="nick"
-                    value="{{ isset($registro->nick) ? $registro->nick : ''  }}" 
-                    class="form-control">
+                    id="nick" 
+                    value="{{ isset($registro->nick) ? $registro->nick : '' }}"
+                    class="form-control @error('nick') is-invalid @enderror" />
+                    @error('nome')
+                    <div class="invalid-feedback">
+                        <span><strong>{{ $message }}</span></strong>
+                     </div>
+                    @enderror
+            </div>
         </div>
     </div>
-</div>
 
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-6 col-lg-12">
@@ -19,7 +25,12 @@
                     name="email" 
                     id="email" 
                     value="{{ isset($registro->email) ? $registro->email : '' }}"
-                    class="form-control">
+                    class="form-control @error('email') is-invalid @enderror" />
+                    @error('email')
+                    <div class="invalid-feedback">
+                        <span><strong>{{ $message }}</span></strong>
+                    </div>
+                    @enderror
         </div>
     </div>
 </div>
@@ -32,9 +43,14 @@
                     name="selo" 
                     id="selo" 
                     value="{{ isset($registro->selo) ? $registro->selo : '' }}"
-                    {{-- value="Novato" --}}
+                    {{-- value="Novato" --}} 
                     {{-- disabled="disabled" --}}
-                    class="form-control">
+                    class="form-control @error('selo') is-invalid @enderror"/>
+                    @error('selo')
+                    <div class="invalid-feedback">
+                        <span><strong>{{ $message }}</span></strong>
+                     </div>
+                @enderror
         </div>
     </div>
 </div>
@@ -44,9 +60,14 @@
         <div class="form-group">
             <label for="senha" class="control-label">Senha:</label>
             <input  type="password" 
-                    name="senha"   
+                    name="senha" 
                     id="senha" 
-                    class="form-control">
+                    class="form-control @error('senha') is-invalid @enderror" />
+                    @error('senha')
+                    <div class="invalid-feedback">
+                        <span><strong>{{ $message }}</span></strong>
+                     </div>
+                    @enderror
         </div>
     </div>
 </div>
@@ -58,7 +79,12 @@
             <input  type="password" 
                     name="confirmar_senha" 
                     id="confirmar_senha" 
-                    class="form-control">
+                    class="form-control @error('confirmar_senha') is-invalid @enderror" />
+                    @error('confirmar_senha')
+                    <div class="invalid-feedback">
+                        <span><strong>{{ $message }}</span></strong>
+                     </div>
+                    @enderror
         </div>
     </div>
 </div>

@@ -14,33 +14,48 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-/*
-Route::get('/usuario/incluir', function () {
-    return view('usuario.incluir');
+
+Route::prefix('usuario')->group(function()
+{
+    //Listar Usuário
+    Route::get('/listar', 'UsuarioController@index')->name('usuario.listar');
+    //Pesquisar Usuário
+    Route::any('/pesquisar', 'UsuarioController@search')->name('usuario.pesquisar');
+    //Incluir Usuário
+    Route::get('/incluir', 'UsuarioController@new')->name('usuario.incluir');
+    Route::post('/salvar', 'UsuarioController@create')->name('usuario.salvar');
+    //Alterar Usuário
+    Route::get('/alterar/{id}', 'UsuarioController@update')->name('usuario.update');
+    Route::post('/update/{id}', 'UsuarioController@save')->name('usuario.atualizar');
+    //Remover Usuário
+    Route::get('/deletar/{id}', 'UsuarioController@delete')->name('usuario.deletar');
+    Route::post('/excluir/{id}', 'UsuarioController@excluir')->name('usuario.excluir');
+    //Consultar Usuário
+    Route::get('/consultar/{id}', 'UsuarioController@view')->name('usuario.consultar');
+    //Cancelar Usuário
+    Route::get('/cancelar', 'UsuarioController@cancel')->name('usuario.cancelar');
 });
-*/
 
-//Listar Usuário
-Route::get('/usuario/listar', 'UsuarioController@index')->name('usuario.listar');
-
-//Incluir Usuário
-Route::get('/usuario/incluir', 'UsuarioController@new')->name('usuario.incluir');
-Route::post('/usuario/salvar', 'UsuarioController@create')->name('usuario.salvar');
-
-//Alterar Usuário
-Route::get('/usuario/alterar/{id}', 'UsuarioController@update')->name('usuario.update');
-Route::post('/usuario/update/{id}', 'UsuarioController@save')->name('usuario.atualizar');
-
-//Remover Usuário
-Route::get('/usuario/deletar/{id}', 'UsuarioController@delete')->name('usuario.deletar');
-Route::post('/usuario/excluir/{id}', 'UsuarioController@excluir')->name('usuario.excluir');
-
-//Consultar Usuário
-Route::get('/usuario/consultar/{id}', 'UsuarioController@view')->name('usuario.consultar');
-
-//Cancelar
-Route::get('/usuario/cancelar', 'UsuarioController@cancel')->name('usuario.cancelar');
-
+Route::prefix('comunidade')->group(function ()
+{
+    //Listar Comunidade
+    Route::get('/listar', 'ComunidadeController@index')->name('comunidade.listar');
+    //Pesquisar Comunidade
+    Route::any('/pesquisar', 'ComunidadeController@search')->name('comunidade.pesquisar');
+    //Incluir Comunidade
+    Route::get('/incluir', 'ComunidadeController@new')->name('comunidade.incluir');
+    Route::post('/salvar', 'ComunidadeController@create')->name('comunidade.salvar');
+    //Alterar Comunidade
+    Route::get('/alterar/{id}', 'ComunidadeController@update')->name('comunidade.update');
+    Route::post('/update/{id}', 'ComunidadeController@save')->name('comunidade.atualizar');
+    //Remover Comunidade
+    Route::get('/deletar/{id}', 'ComunidadeController@delete')->name('comunidade.deletar');
+    Route::post('/excluir/{id}', 'ComunidadeController@excluir')->name('comunidade.excluir');
+    //Consultar Comunidade
+    Route::get('/consultar/{id}', 'ComunidadeController@view')->name('comunidade.consultar');
+    //Cancelar Comunidade
+    Route::get('/cancelar', 'ComunidadeController@cancel')->name('comunidade.cancelar');
+});
 
 //----------------------------------Rota Principal-----------------------------------
 Auth::routes();
@@ -48,5 +63,3 @@ Auth::routes();
 //Home
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Pesquisar Usuário
-Route::any('/usuario/pesquisar', 'UsuarioController@search')->name('usuario.pesquisar');

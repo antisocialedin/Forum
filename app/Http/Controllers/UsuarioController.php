@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\models\Usuario;
 use Illuminate\Cache\Repository;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\UsuarioRequest;
 
 class UsuarioController extends Controller
 {
@@ -50,7 +50,7 @@ class UsuarioController extends Controller
     }
 
     //salvar o registro de um novo usuario
-    public function create(Request $request)
+    public function create(UsuarioRequest $request)
     {
         $registro = $request->all();
         $this->repository->create($registro);
@@ -74,7 +74,7 @@ class UsuarioController extends Controller
     }
 
     //alterar no banco o registro do usuario que modificado pelo usuario - tela
-    public function save(Request $request, $id)
+    public function save(UsuarioRequest $request, $id)
     {
         $data = $request->all();
         $registro = $this->repository->find($id);

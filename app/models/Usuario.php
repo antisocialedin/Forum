@@ -9,7 +9,10 @@ class Usuario extends Model
     protected $table = 'usuarios';
 
     protected $fillable = [
-        'nick', 'email', 'selo', 'senha',
+        'nick', 
+        'email', 
+        'selo', 
+        'senha',
     ];
 
     public function search($filter = null)

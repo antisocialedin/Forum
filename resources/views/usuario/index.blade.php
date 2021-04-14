@@ -20,8 +20,8 @@
                     {{-- <div class="col-sm-12"> --}}
                         {{-- <div class="form-grup"> --}}
                             <label class="control-label col-sm-1">Pesquisar:</label> <input type="text"
-                                class="form-control col-sm-9" id="id" name="nick"
-                                placeholder="Digite um nick para pesquisar" value="{{ $filters['nick'] ?? '' }}" />
+                                class="form-control col-sm-9" id="id" name="nome"
+                                placeholder="Digite o nome da comunidade para pesquisar" value="{{ $filters['nome'] ?? '' }}" />
                             {{-- <div class="col-sm-2"> --}}
                                 <button type="submit" class="btn btn-primary">
                                     OK <i class="fa fa-search-plus"></i>
@@ -42,7 +42,7 @@
                         <thead class="cf">
                             <tr>
                                 <th>Id</th>
-                                <th>Nick</th>
+                                <th>nome</th>
                                 <th>Email</th>
                                 <th>Selo</th>
                             </tr>
@@ -51,7 +51,7 @@
                             @foreach ($registros as $registro)
                                 <tr>
                                     <td>{{ $registro->id }}</td>
-                                    <td>{{ $registro->nick }}</td>
+                                    <td>{{ $registro->nome }}</td>
                                     <td>{{ $registro->email }}</td>
                                     <td>{{ $registro->selo }}</td>
                                     <td>
