@@ -15,6 +15,16 @@ class Usuario extends Model
         'senha',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
+    public function topico()
+    {
+        return $this->hasMany('App\models\Topico', 'usuario_id');
+    }
+
     public function search($filter = null)
     {
         $results = $this->where(function ($query) use($filter) {

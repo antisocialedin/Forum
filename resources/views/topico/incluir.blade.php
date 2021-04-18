@@ -1,17 +1,17 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        @include('usuario.__apptitle')
+        @include('topico.__apptitle')
         <div class="tile">
             <div class="tile-body">
-                <form action="{{ url('usuario/salvar') }}" method="POST">
+                <form action="{{ url('topico/salvar') }}" method="POST">
                     @csrf
-                    @include('usuario.__form')
+                    @include('topico.__form')
                     <div class="center">
                         <button type="submit" class="btn btn-primary btn-lg">
-                            Salvar Usuário
+                            Criar Tópico
                         </button>
-                        <a href="{{ url('usuario/cancelar') }}" class="btn btn-secondary btn-lg ml-3">Cancelar Cadastro</a>
+                        <a href="{{ url('topico/cancelar') }}" class="btn btn-secondary btn-lg ml-3">Cancelar</a>
                     </div>
                 </form>
             </div>

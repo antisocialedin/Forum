@@ -57,6 +57,26 @@ Route::prefix('comunidade')->group(function ()
     Route::get('/cancelar', 'ComunidadeController@cancel')->name('comunidade.cancelar');
 });
 
+Route::prefix('topico')->group(function ()
+{
+    //Listar Comunidade
+    Route::get('/listar', 'TopicoController@index')->name('topico.listar');
+    //Pesquisar Comunidade
+    Route::any('/pesquisar', 'TopicoController@search')->name('topico.pesquisar');
+    //Incluir Comunidade
+    Route::get('/incluir', 'TopicoController@new')->name('topico.incluir');
+    Route::post('/salvar', 'TopicoController@create')->name('topico.salvar');
+    //Alterar Comunidade
+    Route::get('/alterar/{id}', 'TopicoController@update')->name('topico.update');
+    Route::post('/update/{id}', 'TopicoController@save')->name('topico.atualizar');
+    //Remover Comunidade
+    Route::get('/deletar/{id}', 'TopicoController@delete')->name('topico.deletar');
+    Route::post('/excluir/{id}', 'TopicoController@excluir')->name('topico.excluir');
+    //Consultar Comunidade
+    Route::get('/consultar/{id}', 'TopicoController@view')->name('topico.consultar');
+    //Cancelar Comunidade
+    Route::get('/cancelar', 'TopicoController@cancel')->name('topico.cancelar');
+});
 //----------------------------------Rota Principal-----------------------------------
 Auth::routes();
 

@@ -16,8 +16,8 @@ class UsuarioRequest extends FormRequest
     public function rules()
     {
         return [
-            'nick'=>'required|string|max:100',
-            'email'=>'required|string|max:100',
+            'nick'=>'required|string|max:10',
+            'email'=>'required|string|email|max:50',
             'selo'=>'required|string|max:15',
             'senha'=>'required|string|max:20',
             'confirmar_senha'=>'required|string|max:20',

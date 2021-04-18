@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateComunidadesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('comunidades', function (Blueprint $table) {
@@ -22,11 +18,7 @@ class CreateComunidadesTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
     public function down()
     {
         Schema::dropIfExists('comunidades');

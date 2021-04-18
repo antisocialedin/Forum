@@ -17,8 +17,7 @@ class CreateTopicosTable extends Migration
             $table->increments('id');
             $table->string('titulo', 100);
             $table->string('conteudo', 1000);
-            $table->float('avaliação');
-            $table->string('data', 100);
+            $table->float('avaliacao', 8,2);
             $table->timestamps();
         });
     }
