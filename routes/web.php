@@ -77,6 +77,13 @@ Route::prefix('topico')->group(function ()
     //Cancelar Comunidade
     Route::get('/cancelar', 'TopicoController@cancel')->name('topico.cancelar');
 });
+
+//rotas para imagem
+Route::get('/imagem/{imagem}', 'ImageController@getImages')->name('imagem.get');
+Route::post('/store','ImageController@store')->name('imagem.store');
+Route::post('/imagem/excluir','ImageController@excluir')->name('imagem.excluir');
+
+
 //----------------------------------Rota Principal-----------------------------------
 Auth::routes();
 

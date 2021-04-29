@@ -25,6 +25,7 @@
                         name="conteudo" 
                         id="conteudo" 
                         value="{{ isset($registro->conteudo) ? $registro->conteudo : '' }}"
+                        rows="10"
                         class="form-control @error('conteudo') is-invalid @enderror"/>
                         @error('conteudo')
                         <div class="invalid-feedback">
