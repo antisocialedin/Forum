@@ -80,6 +80,7 @@ Route::prefix('topico')->group(function ()
 
 //rotas para imagem
 Route::get('/imagem/{imagem}', 'ImageController@getImages')->name('imagem.get');
+Route::get('/thumbnail/{imagem}', 'ImageController@getThumbnail')->name('thumbnail.get');
 Route::post('/store','ImageController@store')->name('imagem.store');
 Route::post('/imagem/excluir','ImageController@excluir')->name('imagem.excluir');
 

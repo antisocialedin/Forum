@@ -53,6 +53,11 @@ class UsuarioController extends Controller
     public function create(UsuarioRequest $request)
     {
         $registro = $request->all();
+
+        if (empty($data['profile_pic'])){
+            $data['profile_pic']='boy.png';
+        }
+ 
         $this->repository->create($registro);
 
         return redirect()->route('usuario.listar')->with('success', 'Registro Cadastrado com sucesso!');;

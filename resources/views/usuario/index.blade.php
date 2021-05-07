@@ -41,6 +41,7 @@
                     <table class="table table-striped table-bordered table-hover cf">
                         <thead class="cf">
                             <tr>
+                                <th>Foto</th>
                                 <th>Id</th>
                                 <th>nick</th>
                                 <th>Email</th>
@@ -50,6 +51,13 @@
                         <tbody>
                             @foreach ($registros as $registro)
                                 <tr>
+                                    <td>
+                                        @if (isset($registro->profile_pic))
+                                            <img src="{{ url('/thumbnail', $registro->profile_pic) }}" class="img-avatar" />
+                                        @else
+                                            <img src="{{ url('/thumbnail', 'boy.png') }}" class="img-avatar" />
+                                        @endif 
+                                    </td>  
                                     <td>{{ $registro->id }}</td>
                                     <td>{{ $registro->nick }}</td>
                                     <td>{{ $registro->email }}</td>
