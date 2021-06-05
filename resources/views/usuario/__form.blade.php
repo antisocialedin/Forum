@@ -139,21 +139,17 @@
 
 @section('javascript')
 
-<script>
-
-$("#fileInput").change(function(e){
+  <script>
+        $("#fileInput").change(function(e){
            e.preventDefault();
            enviarFoto(this);
         });
-
         $("#fileExcluir").click(function(e){
            e.preventDefault();
            excluirFoto(this);
         });
-
           //preparar um pacote
         function enviarFoto(input){
-
           if (input.files && input.files[0]){
               var reader = new FileReader();
               var filename = $('#fileInput').val();
@@ -168,12 +164,12 @@ $("#fileInput").change(function(e){
           }
      
         }
-
-
         function sendToServer(foto){
             var formData = new FormData();
             formData.append('image',foto);
+            formData.append('fotoAntiga',$('#profile_pic').val());
             formData.append('id',$('#id').val());
+            $('#fileInput').val('');
             $.ajax({
                 url: "{{ url('/store') }}",
                 method: 'POST',
@@ -188,6 +184,7 @@ $("#fileInput").change(function(e){
                     }
                 },
                 success : function(response){
+                    console.log(response.nomeArquivo);
                     $('#profile_pic').val(response.nomeArquivo);
                 },
                 error:function(data){
@@ -196,36 +193,38 @@ $("#fileInput").change(function(e){
             })   
             
         }
-
         function excluirFoto(e){
+            console.log($('#profile_pic').val());
+            var formData = new FormData();
+            formData.append('image',$('#imageUpload').val());
+            formData.append('id',$('#id').val());
             $.ajax({
                 url: "{{ url('/imagem/excluir') }}",
                 type:"POST",
-                data:{
-                    image: $('#profile_pic').val()
-                },
+                data:formData,
+                dataType:'JSON',
+                cache:false, 
+                contentType:false,
+                processData: false,
                 beforeSend: function(xhr, type) {
                     if (!type.crossDomain) {
                         xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
                     }
                 },
                 success: function(response){
-                    console.log(response.nomeArquivo);
                     $('#profile_pic').val('');
                     document.getElementById('imageUpload').src = "{{ url('/imagem', 'boy.png') }}";
                     $('#profile_pic').val(response.nomeArquivo);
                     $('#fileInput').val('');
                 },
                 error:function(response){
-                    document.getElementById('imageBanco').src = "{{ url('/imagem', 'boy.png') }}";
+                    document.getElementById('imageUpload').src = "{{ url('/imagem', 'boy.png') }}";
                     $('#profile_pic').val(response.nomeArquivo);
                     $('#fileInput').val('');
                }
-
             })
-
         }
-
-</script>
-
+  
+  </script> 
+    
 @endsection
