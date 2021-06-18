@@ -25,6 +25,8 @@ use Illuminate\Support\Facades\Auth;
 
 Route::prefix('usuario')->group(function()
 {
+    //Login
+    Route::post("/login",'UsuarioRestController@login');
     //Listar Usuário
     Route::get('/listar', 'Rest\UsuarioRestController@index')->name('usuario.listar');
     //Pesquisar Usuário
