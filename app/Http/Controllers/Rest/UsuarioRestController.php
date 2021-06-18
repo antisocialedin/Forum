@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\models\Usuario;
 use Illuminate\Cache\Repository;
 use Illuminate\Http\Request;
-use App\Http\Requests\UsuarioRequest;
+//use App\Http\Requests\UsuarioRequest;
+use Illuminate\Support\Facades\DB;
 
 class UsuarioRestController extends Controller
 {
@@ -20,14 +21,49 @@ class UsuarioRestController extends Controller
 
 // ------------------------------------Listar Usuarios----------------------------------------------------- //
     //retorna a pagina de listagem de Usuarios
+    // paginaAtual 0....n
+    // pageSize    5,10,15,20,25.... 
+    // dir/sort    classificar -> asc, desc 
+    // props "campos da tabela" -> id, nome, email.
+    // search      nome, email, cpf, cgc ......             
+
     public function index(Request $request)
     {
-        $registros = $this->repository->paginate(10); //padrão do paginate() são 15 registros
-        return response()->json($registros);
+        //$this->out->writeln("Hello from Terminal");
+
+        //$registros = $this->repository->paginate();
+
+        //DB::table('usuarios')->paginate();
+
+        $paginaAtual = $request->get('paginaAtual') ? $request->get('paginaAtual') : 1;
+        $pageSize    = $request->get('pageSize') ? $request->get('pageSize') : 5;
+        $dir         = $request->get('dir') ? $request->get('dir') : "asc";
+        $props       = $request->get('props') ? $request->get('props') : "id";
+        $search      = $request->get('search') ? $request->get('search') : "";
+
+        if (empty($search)){
+            $query = DB::table('usuarios')->select('*')->orderBy( $props, $dir);   
+        } else {
+            $query = DB::table('usuarios')->where('nome', 'LIKE','%'.$search.'%')
+                                        //->orWhere('email','LIKE','%'.$search.'%')
+                                        ->orderBy( $props, $dir); 
+        } 
+
+        $total = $query->count();
+
+        $registros = $query->offset(($paginaAtual-1) * $pageSize)->limit($pageSize)->get();
+
+        return response()->json([
+            'data'        =>$registros,
+            'paginaAtual' =>$paginaAtual-1,
+            'pageSize'    =>$pageSize,
+            'paginaFim'   =>ceil($total/$pageSize),
+            'total'       =>$total,
+        ]);
     }
 
 // ------------------------------------Pesquisar Usuarios----------------------------------------------------- //
-//retorna registro de um usuario
+    //retorna registro de um usuario
     public function search(Request $request)
     {
         $filters = $request->all();
@@ -47,12 +83,12 @@ class UsuarioRestController extends Controller
         return view('usuario.incluir');
     }
 
-    //salvar o registro de um novo usuario
+    // salvar o registro de um novo usuario
     public function create(Request $request)
     {
-        $registro = $request->all();
-        $this->repository->create($registro);
-        return response()->json(['mensagem'=>'cadastro realizado com sucesso!']);
+        $data = $request->all();
+        $this->repository->create($data);
+        return response()->json(['mensagem'=>'Cadastro realizado com sucesso!']);
     }
 
 // ------------------------------------Alterar Usuarios----------------------------------------------------- //
@@ -62,22 +98,25 @@ class UsuarioRestController extends Controller
         $registro = $this->repository->find($id);
 
         if (!$registro) {
-            return redirect()->back();
+            return response()->json(['mensagem' => "Registro não localizado!"]);
         }
 
-        return view('usuario.alterar', [
-            'registro'=>$registro,
-        ]);
+        return  response()->json(['autor' => $registro]);
     }
 
     //alterar no banco o registro do usuario que modificado pelo usuario - tela
-    public function save(UsuarioRequest $request, $id)
+    public function save(Request $request, $id)
     {
         $data = $request->all();
         $registro = $this->repository->find($id);
+
+        if (!$registro){
+            return response()->json(['mensagem' => "Registro não localizado!"]);
+        }
+
         $registro->update($data);
         
-        return response()->json(['mensagem'=>'cadastro salvo com sucesso!']);
+        return response()->json(['mensagem' => "Alteração realizada com sucesso!"] );
     }
 
 // ------------------------------------Excluir Usuarios----------------------------------------------------- //
